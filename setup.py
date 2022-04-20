@@ -76,7 +76,7 @@ trove_classifiers = [
     'Topic :: Software Development :: Libraries :: Python Modules',
 ]
 
-setup(name='confluent-kafka',
+setup(name='confluent-kafka-iam',
       # Make sure to bump CFL_VERSION* in confluent_kafka/src/confluent_kafka.h
       # and version in docs/conf.py.
       version='1.8.2',
@@ -87,8 +87,8 @@ setup(name='confluent-kafka',
       long_description_content_type='text/markdown',
       url='https://github.com/confluentinc/confluent-kafka-python',
       ext_modules=[module],
-      packages=find_packages('src'),
-      package_dir={'': 'src'},
+      packages=[ f'msk.{p}' for p in find_packages('src') ]
+      package_dir={'msk': 'src'},
       data_files=[('', [os.path.join(work_dir, 'LICENSE.txt')])],
       install_requires=INSTALL_REQUIRES,
       classifiers=trove_classifiers,
